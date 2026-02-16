@@ -21,7 +21,7 @@ light_energy = 1.35
 shadow_enabled = true
 
 [node name="VoxelWorld" type="Node3D" parent="."]
-script = ExtResource("2_ylt7p")
+script = ExtResource("3_ylt7p")
 world_radius = 26
 max_height = 8
 

@@ -178,6 +178,9 @@ func _edit_block(should_place: bool) -> void:
 		if place_world.y > global_position.y + build_max_height_delta:
 			return
 
+		var place_coord := world.world_to_block(hit.position + hit.normal * 0.5)
+		if place_coord == world.world_to_block(global_position):
+			return
 		world.place_block(place_coord)
 	else:
 		world.break_block(coord)
