@@ -15,6 +15,8 @@ class_name PlayerController
 @export var mantle_height: float = 1.2
 @export var hurdle_forward_boost: float = 3.0
 @export var interact_range: float = 7.5
+@export var build_min_distance: float = 1.2
+@export var build_max_height_delta: float = 1.2
 @export var world_path: NodePath
 
 @onready var head: Node3D = $Head
@@ -162,6 +164,20 @@ func _edit_block(should_place: bool) -> void:
 
 	var coord: Vector3i = collider.get_meta("voxel_coord")
 	if should_place:
+		if not is_on_floor():
+			return
+		var place_coord := world.world_to_block(hit.position + hit.normal * 0.5)
+		if place_coord == world.world_to_block(global_position):
+			return
+
+		var place_world := world.block_to_world(place_coord)
+		var feet := global_position
+		var chest := global_position + Vector3.UP * 1.2
+		if place_world.distance_to(feet) < build_min_distance or place_world.distance_to(chest) < build_min_distance:
+			return
+		if place_world.y > global_position.y + build_max_height_delta:
+			return
+
 		var place_coord := world.world_to_block(hit.position + hit.normal * 0.5)
 		if place_coord == world.world_to_block(global_position):
 			return

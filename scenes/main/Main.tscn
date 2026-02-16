@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4ungmrb8x26u"]
+[gd_scene load_steps=4 format=3 uid="uid://d4ungmrb8x26u"]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_xj6bk"]
-[ext_resource type="Script" path="res://scripts/main/Main.gd" id="2_74kkr"]
-[ext_resource type="Script" path="res://scripts/voxel/VoxelWorld.gd" id="3_ylt7p"]
-[gd_scene load_steps=3 format=3 uid="uid://d4ungmrb8x26u"]
-
-[ext_resource type="Script" path="res://scripts/main/Main.gd" id="1_hhl10"]
+[ext_resource type="Script" path="res://scripts/voxel/VoxelWorld.gd" id="2_ylt7p"]
 
 [sub_resource type="Environment" id="Environment_u4m1p"]
 background_mode = 1
@@ -15,11 +11,6 @@ ambient_light_color = Color(0.48, 0.56, 0.66, 1)
 ambient_light_energy = 0.7
 
 [node name="Main" type="Node3D"]
-script = ExtResource("2_74kkr")
-ambient_light_energy = 0.6
-
-[node name="Main" type="Node3D"]
-script = ExtResource("1_hhl10")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_u4m1p")
@@ -36,16 +27,3 @@ max_height = 8
 
 [node name="Player" parent="." instance=ExtResource("1_xj6bk")]
 position = Vector3(0, 7, 0)
-light_energy = 1.2
-shadow_enabled = true
-
-[node name="SpawnPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 2, 5)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 8)
-current = true
-fov = 70.0
